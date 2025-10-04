@@ -1,60 +1,93 @@
 #include <stdio.h>
 
-int main() {
-    // ==========================
-    // Torre - usando FOR
-    // Movimento: 5 casas para a direita
-    // ==========================
-    int casasTorre = 5; 
-    printf("Movimento da Torre:\n");
-    for (int i = 1; i <= casasTorre; i++) {
+// ==========================
+// Função recursiva para a Torre
+// Move "n" casas para a direita
+// ==========================
+void moverTorre(int casas) {
+    if (casas == 0) return; // Caso base da recursão
+    printf("Direita\n");
+    moverTorre(casas - 1); // Chamada recursiva para continuar o movimento
+}
+
+// ==========================
+// Função recursiva para a Rainha
+// Move "n" casas para a esquerda
+// ==========================
+void moverRainha(int casas) {
+    if (casas == 0) return; 
+    printf("Esquerda\n");
+    moverRainha(casas - 1);
+}
+
+// ==========================
+// Função recursiva + loops aninhados para o Bispo
+// Move "n" casas para cima e direita (diagonal)
+// O loop externo controla o movimento vertical
+// O loop interno controla o movimento horizontal
+// ==========================
+void moverBispo(int casas) {
+    if (casas == 0) return;
+
+    // Loop aninhado para imprimir "Cima" e "Direita" juntos
+    for (int vertical = 1; vertical <= 1; vertical++) { // sempre 1 passo vertical
+        for (int horizontal = 1; horizontal <= 1; horizontal++) { // sempre 1 passo horizontal
+            printf("Cima Direita\n");
+        }
+    }
+
+    moverBispo(casas - 1); // Chamada recursiva
+}
+
+// ==========================
+// Cavalo com loops complexos
+// Movimento: 2 casas para cima e 1 para a direita
+// Usando loops aninhados, múltiplas variáveis, continue e break
+// ==========================
+void moverCavalo() {
+    int movVertical = 2;   // duas casas para cima
+    int movHorizontal = 1; // uma casa para a direita
+
+    printf("Movimento do Cavalo:\n");
+
+    for (int v = 1; v <= movVertical; v++) {
+        // se for a primeira casa, pula impressão só para demonstrar o uso do continue
+        if (v == 0) continue;
+        printf("Cima\n");
+    }
+
+    // Agora movimento horizontal
+    for (int h = 1; h <= movHorizontal; h++) {
+        // Se atingir mais do que 1, parar o loop
+        if (h > movHorizontal) break;
         printf("Direita\n");
     }
+}
+
+int main() {
+    // ==========================
+    // Torre (recursividade)
+    // ==========================
+    printf("Movimento da Torre:\n");
+    moverTorre(5);
 
     // ==========================
-    // Bispo - usando WHILE
-    // Movimento: 5 casas na diagonal (cima + direita)
+    // Bispo (recursividade + loops aninhados)
     // ==========================
-    int casasBispo = 5;
-    int i = 1;
     printf("\nMovimento do Bispo:\n");
-    while (i <= casasBispo) {
-        printf("Cima Direita\n");
-        i++;
-    }
+    moverBispo(5);
 
     // ==========================
-    // Rainha - usando DO-WHILE
-    // Movimento: 8 casas para a esquerda
+    // Rainha (recursividade)
     // ==========================
-    int casasRainha = 8;
-    int j = 1;
     printf("\nMovimento da Rainha:\n");
-    do {
-        printf("Esquerda\n");
-        j++;
-    } while (j <= casasRainha);
+    moverRainha(8);
 
     // ==========================
-    // Cavalo - usando loops aninhados
-    // Movimento: 2 casas para baixo + 1 para esquerda
+    // Cavalo (loops complexos)
     // ==========================
-    int casasBaixo = 2;
-    int casasEsquerda = 1;
-
-    printf("\nMovimento do Cavalo:\n");
-
-    // Primeiro loop FOR: movimenta duas casas para baixo
-    for (int k = 1; k <= casasBaixo; k++) {
-        printf("Baixo\n");
-    }
-
-    // Loop WHILE aninhado: movimenta uma casa para a esquerda
-    int l = 1;
-    while (l <= casasEsquerda) {
-        printf("Esquerda\n");
-        l++;
-    }
+    printf("\n");
+    moverCavalo();
 
     return 0;
 }
