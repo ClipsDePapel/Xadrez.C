@@ -35,5 +35,26 @@ int main() {
         j++;
     } while (j <= casasRainha);
 
+    // ==========================
+    // Cavalo - usando loops aninhados
+    // Movimento: 2 casas para baixo + 1 para esquerda
+    // ==========================
+    int casasBaixo = 2;
+    int casasEsquerda = 1;
+
+    printf("\nMovimento do Cavalo:\n");
+
+    // Primeiro loop FOR: movimenta duas casas para baixo
+    for (int k = 1; k <= casasBaixo; k++) {
+        printf("Baixo\n");
+    }
+
+    // Loop WHILE aninhado: movimenta uma casa para a esquerda
+    int l = 1;
+    while (l <= casasEsquerda) {
+        printf("Esquerda\n");
+        l++;
+    }
+
     return 0;
 }
